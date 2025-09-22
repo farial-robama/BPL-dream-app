@@ -1,28 +1,28 @@
+import { Suspense } from "react";
+import "./App.css";
+import AvailablePlayers from "./Components/AvailablePlayers/AvailablePlayers";
+import Navbar from "./Components/Navbar/Navbar";
+import SelectedPlayers from "./Components/SelectedPlayers/SelectedPlayers";
 
-import './App.css'
-import navImg from "./assets/images/logo.png";
-import dollarImg from "./assets/images/dollar-1.png";
-
-function App() {
-  
-  return (
-    <>
-      <div className="navbar bg-base-100 shadow-sm max-w-[1200px] mx-auto">
-  <div className="flex-1">
-    <a className="text-xl">
-      <img className='w-[60px] h-[60px]' src={navImg} alt="" />
-    </a>
-    
-  </div>
-  <div className="flex items-center">
-    <span className='mr-1'>6000000</span>
-    <span className='mr-1'>Coin</span>
-    <img src={dollarImg} alt="" />
-    
-  </div>
-</div>
-    </>
-  )
+const fetchPlayers = async () => {
+  const res = await fetch('/players.json')
+  return res.json()
 }
 
-export default App
+
+function App() {
+  const playersPromise = fetchPlayers()
+  return (
+    <>
+      <Navbar></Navbar>
+
+      <Suspense fallback={<span className="loading loading-dots loading-xl"></span>}>
+        <AvailablePlayers playersPromise={playersPromise}></AvailablePlayers>
+      </Suspense>
+
+      <SelectedPlayers></SelectedPlayers>
+    </>
+  );
+}
+
+export default App;
