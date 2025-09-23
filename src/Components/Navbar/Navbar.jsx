@@ -10,8 +10,8 @@ const Navbar = ({availableBalance}) => {
                     <img className="w-[60px] h-[60px]" src={navImg} alt="" />
                   </a>
                 </div>
-                <div className="flex items-center">
-                  <span className="mr-1">{availableBalance}</span>
+                <div className="flex items-center font-semibold">
+                  <span className="mr-1">${availableBalance}</span>
                   <span className="mr-1">Coin</span>
                   <img src={dollarImg} alt="" />
                 </div>

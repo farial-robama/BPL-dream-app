@@ -1,5 +1,7 @@
 import { Suspense, useState } from "react";
 import "./App.css";
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import AvailablePlayers from "./Components/AvailablePlayers/AvailablePlayers";
 import Navbar from "./Components/Navbar/Navbar";
 import SelectedPlayers from "./Components/SelectedPlayers/SelectedPlayers";
@@ -12,7 +14,7 @@ const playersPromise = fetchPlayers()
 
 function App() {
   const[toggle, setToggle] = useState(true)
-  const [availableBalance, setAvailableBalance] = useState(600000)
+  const [availableBalance, setAvailableBalance] = useState(8000000)
   const [purchasedPlayers, setPurchasedPlayers] = useState([])
 
   const removePlayer = (p) => {
@@ -23,13 +25,14 @@ function App() {
   
   return (
     <>
+
       <Navbar availableBalance={availableBalance}></Navbar>
     
       <div className="max-w-[1200px] mx-auto flex justify-between items-center">
         <h3 className="font-bold text-2xl">{
           toggle === true ? "Available Players" : `Selected Players (${purchasedPlayers.length}/6)`
           }</h3>
-        <div className="font-bold">
+        <div className="font-bold mb-4">
           <button onClick={()=>setToggle(true)} className={`px-4 py-3 border-2 border-gray-200 rounded-l-xl border-r-0 ${toggle === true ? "bg-lime-200" : ""}`}>Available</button>
           <button onClick={()=>setToggle(false)} className={` px-4 py-3 border-2 border-gray-200 rounded-r-xl border-l-0 ${toggle === false ? "bg-lime-200" : ""}`}>Selected <span>({purchasedPlayers.length})</span></button>
         </div>
@@ -42,7 +45,9 @@ function App() {
       </Suspense> : <SelectedPlayers removePlayer={removePlayer} purchasedPlayers={purchasedPlayers}></SelectedPlayers>
       }
 
-      
+      <ToastContainer />
+
+
     </>
   );
 }

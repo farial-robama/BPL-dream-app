@@ -7,7 +7,7 @@ const SelectedCard = ({player, removePlayer}) => {
 
     }
     return (
-         <div className='border-2 mt-3 border-gray-200 rounded-xl p-3 flex justify-between items-center'>
+         <div className='border-2 border-gray-200 rounded-xl p-3 flex justify-between items-center'>
                 <div className='flex items-center'>
                     <img className='h-[50px] w-[50px] rounded-xl' src={player.image} alt="" />
                     <div className='ml-2'>
