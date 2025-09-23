@@ -19,6 +19,7 @@ const handleSelected = (playerData) =>{
                 setIsSelected(true)
                 setAvailableBalance(availableBalance-playerPrice)
                 setPurchasedPlayers([...purchasedPlayers,playerData])
+                toast("Player Purchased!")
         }
     return (
         <div className="card bg-base-100 shadow-sm p-5">
