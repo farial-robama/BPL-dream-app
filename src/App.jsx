@@ -12,8 +12,14 @@ const playersPromise = fetchPlayers()
 
 function App() {
   const[toggle, setToggle] = useState(true)
-  const [availableBalance, setavailableBalance] = useState(600000)
+  const [availableBalance, setAvailableBalance] = useState(600000)
   const [purchasedPlayers, setPurchasedPlayers] = useState([])
+
+  const removePlayer = (p) => {
+     const filteredData = purchasedPlayers.filter(plyr => plyr.player_name !== p.player_name)
+     setPurchasedPlayers(filteredData)
+     setAvailableBalance(availableBalance + parseInt(p.price_usd.split("USD").join("").split(",").join("")))
+  }
   
   return (
     <>
@@ -32,8 +38,8 @@ function App() {
 
       {
         toggle === true? <Suspense fallback={<span className="loading loading-dots loading-xl"></span>}>
-        <AvailablePlayers purchasedPlayers={purchasedPlayers} setPurchasedPlayers={setPurchasedPlayers} availableBalance={availableBalance} setavailableBalance={setavailableBalance} playersPromise={playersPromise}></AvailablePlayers>
-      </Suspense> : <SelectedPlayers purchasedPlayers={purchasedPlayers}></SelectedPlayers>
+        <AvailablePlayers purchasedPlayers={purchasedPlayers} setPurchasedPlayers={setPurchasedPlayers} availableBalance={availableBalance} setAvailableBalance={setAvailableBalance} playersPromise={playersPromise}></AvailablePlayers>
+      </Suspense> : <SelectedPlayers removePlayer={removePlayer} purchasedPlayers={purchasedPlayers}></SelectedPlayers>
       }
 
       
