@@ -3,7 +3,7 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaGithub, FaLinkedinIn } from "rea
 
 const Footer = () => {
   return (
-   <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content flex flex-col ">
+   <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content flex flex-col mt-7 ">
     <div className="grid md:grid-cols-6 grid-cols-3 gap-10 p-10 mx-auto">
         <nav className="grid grid-rows-4">
     <h6 className="footer-title">Services</h6>
