@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import AvailablePlayers from "./Components/AvailablePlayers/AvailablePlayers";
 import Navbar from "./Components/Navbar/Navbar";
 import SelectedPlayers from "./Components/SelectedPlayers/SelectedPlayers";
+import Footer from "./Components/Footer/Footer";
 
 const fetchPlayers = async () => {
   const res = await fetch('/players.json')
@@ -45,6 +46,8 @@ function App() {
       </Suspense> : <SelectedPlayers removePlayer={removePlayer} purchasedPlayers={purchasedPlayers}></SelectedPlayers>
       }
 
+      <Footer></Footer>
+     
       <ToastContainer />
 
 
